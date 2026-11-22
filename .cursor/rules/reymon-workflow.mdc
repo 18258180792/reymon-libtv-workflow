@@ -1,5 +1,5 @@
 ---
-description: Multi-SKU ad reverse-engineering and LibTV 480p pre-wired canvas workflow (V3.0 Dual-Mode)
+description: Multi-SKU ad reverse-engineering and LibTV 480p pre-wired canvas workflow (V3.2 Dual-Mode)
 alwaysApply: true
 ---
 
@@ -7,9 +7,9 @@ alwaysApply: true
 
 Before planning or executing any ad reverse-engineering, scriptwriting, prompt authoring, or LibTV canvas task in this workspace, read `AGENTS.md` in full and load the relevant skills under `.agents/skills/`:
 
-- `.agents/skills/reymon-ad-reverse-workflow/SKILL.md` (main V3.0 orchestration & 6-stage flow)
-- `.agents/skills/commercial-image-prompt-pro/SKILL.md` (8-layer optical/PBR image prompt protocol)
-- `.agents/skills/cinematic-storyboard-director/SKILL.md` (V3.0 Dual-Mode video storyboard & audio sync)
+- `.agents/skills/reymon-ad-reverse-workflow/SKILL.md` (main V3.2 orchestration, 6-stage flow, H01-H10 hook taxonomy & Gate 1 rubric)
+- `.agents/skills/commercial-image-prompt-pro/SKILL.md` (V3.2 Global Visual Style Lock, Full-Bleed anti-letterbox framing, 4-mode routing & 8-layer optical/PBR protocol)
+- `.agents/skills/cinematic-storyboard-director/SKILL.md` (V3.2 Dual-Mode storyboard, Global Visual Style Lock, Seedance 2.5 anti-collapse rules & audio sync)
 - Product SKU briefs & real packshot/granule assets live in `products/` (e.g. `products/reymon-cat-litter/`).
 
 ## Non-Negotiable Safety & Quality Invariants
@@ -17,5 +17,6 @@ Before planning or executing any ad reverse-engineering, scriptwriting, prompt a
 2. **Zero Auto-Spend (`run=false`)**: Never pass `--run` to `libtv` CLI or `run=true` to LibTV MCP creation calls unless the user explicitly asks to trigger a specific node.
 3. **Default 480p Draft Preset**: Pre-wire video nodes as `Seedance 2.5 Flash` (`star-video2.5-flash`), `resolution="480p"`, `ratio="9:16"`; static images as `Lib Image 2.6 Pro` (`lib-image-2.6-s`).
 4. **Audio/BGM & Speech-Rate Lock**: Enforce `4.0~4.2` Chinese chars/sec per shot duration, lock identical `Minimax-speech-2.8-hd` `voiceId` + `speed`, and strictly forbid per-shot BGM (`No BGM`) in every video node prompt.
+5. **Global Visual Style Lock & Full-Bleed Anti-Letterbox Framing**: Lock one unified Global Visual Style across all final scene/keyframe/video prompts (and a neutral 5500K studio base for upstream turnarounds/props). Never write literal UI safe-zone tokens (`18%`, `12%`, `安全区`, `避让区`, `安全边距`, `抖音图标`) into image or video prompts; translate them into full-bleed photographic composition.
 
 To enable Cursor project-local skill discovery if needed, run `python3 scripts/setup.py --agent cursor --scope project` (or `--check` for health diagnostics).

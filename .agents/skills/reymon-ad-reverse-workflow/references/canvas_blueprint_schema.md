@@ -1,6 +1,6 @@
 # LibTV 无限画布 V3 双模式分区拓扑与蓝图数据结构规范
 
-本规范统一指导 **LibTV MCP 云端直连建图（主力路径）** 与 **`scripts/build_libtv_canvas.py` 离线脚本建图（降级路径）**，彻底对齐 V3.0 的「多 SKU 资产 + 双制作模式 + 音色/BGM 100% 统合 + 默认 `480p Flash` 抽卡」。
+本规范统一指导 **LibTV MCP 云端直连建图（主力路径）** 与 **`scripts/build_libtv_canvas.py` 离线脚本建图（降级路径）**，彻底对齐 V3.2 的「多 SKU 资产 + 双制作模式 + 全局视觉风格锁 + 满画幅防边框 + 音色/BGM 100% 统合 + 默认 `480p Flash` 抽卡」。
 
 ---
 
@@ -45,7 +45,7 @@
 
 ---
 
-## 三、 离线降级蓝图 `canvas_blueprint.json` 标准结构（V3.0）
+## 三、 离线降级蓝图 `canvas_blueprint.json` 标准结构（V3.2）
 
 ```json
 {

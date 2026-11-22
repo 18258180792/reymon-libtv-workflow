@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Cross-agent bootstrap, skill linker, dependency installer, and health-check tool
-for the reymon-libtv-workflow repository (V3.0 Dual-Mode).
+for the reymon-libtv-workflow repository (V3.2 Dual-Mode).
 
 Uses Python 3.9+ standard library only. Never runs paid generation nodes (--run).
 """
@@ -31,6 +31,7 @@ REQUIRED_SKILLS: Dict[str, List[str]] = {
         "SKILL.md",
         "references/canvas_blueprint_schema.md",
         "references/delivery_markdown_standard.md",
+        "references/hook_matrix_and_eval_rubric.md",
         "references/reymon_cat_litter_playbook.md",
         "scripts/build_libtv_canvas.py",
         "scripts/check_env_and_libtv.sh",

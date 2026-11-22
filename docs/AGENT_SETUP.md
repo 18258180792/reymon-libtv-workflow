@@ -31,9 +31,9 @@
 ## 三、 技能安装与同步方式（项目级 vs 全局级）
 
 仓库内的 `.agents/skills/` 包含以下 3 个完整技能（均含 `SKILL.md`、`references/` 词表规范与 `scripts/` 校验脚本）：
-1. `reymon-ad-reverse-workflow` —— V3.0 双模式反推与 LibTV 无限画布编排主技能
-2. `commercial-image-prompt-pro` —— 8 维商业摄影光学、四点布光与 PBR 微观材质静帧提示词技能
-3. `cinematic-storyboard-director` —— V3.0 分镜调度、`4.0~4.2 字/秒` 恒定字速与单镜禁 BGM 视频提示词技能
+1. `reymon-ad-reverse-workflow` —— V3.2 双模式反推、H01–H10 钩子矩阵、Gate 1 评分卡与 LibTV 无限画布编排主技能
+2. `commercial-image-prompt-pro` —— V3.2 全局视觉风格锁、满画幅无边框防裁切构图、四模态分流与 8 维 PBR 商业摄影静帧提示词技能
+3. `cinematic-storyboard-director` —— V3.2 全局风格锁、Seedance 2.5 防崩坏四铁律、`4.0~4.2 字/秒` 恒定字速与单镜禁 BGM 视频提示词技能
 
 ### 方式 1：项目级初始化（推荐，安全无全局污染）
 ```bash

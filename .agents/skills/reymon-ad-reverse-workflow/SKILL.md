@@ -8,14 +8,15 @@ description: >-
   plus single-hook or multi-hook A/B testing on pre-wired 480p LibTV Infinite Canvas (run=false).
 ---
 
-# 多产品多SKU · 双模式信息流视频反推与 LibTV `480p` 画布预连线工作流（V3.0）
+# 多产品多SKU · 双模式信息流视频反推与 LibTV `480p` 画布预连线工作流（V3.2）
 
 本技能将任意爆款参考视频（或链接）转化为适配目标产品/SKU 的投流分镜方案，并支持 **「模式 A：全 AI 统合全片」** 与 **「模式 B：轻量 AI 钩子 + 实拍混剪」** 双轨交付，自动在 LibTV 云端画布完成分组、标注与 `Seedance 2.5 Flash (480p)` 预连线（**严格 `run=false` 零自动扣费**）。
 
 ## 执行前必读参考文档与联动子技能
 
-- **【必调生图专家技能】**：[commercial-image-prompt-pro](../commercial-image-prompt-pro/SKILL.md)（八维商业摄影光学、四点布光、PBR 微观材质、上下 18% + 右侧 12% 全向安全区）
-- **【必调分镜导演技能】**：[cinematic-storyboard-director](../cinematic-storyboard-director/SKILL.md)（V3.0 双模式终版：全能参考多图锁、`4.0~4.2字/秒` 恒定字速、单镜禁 BGM + 分秒 Foley SFX、钩子切出实拍衔接点）
+- **【必调生图专家技能】**：[commercial-image-prompt-pro](../commercial-image-prompt-pro/SKILL.md)（V3.2：全局视觉风格锁、满画幅无边框安全构图、四模态分流、八维商业摄影光学、物理接触与实体预算）
+- **【必调分镜导演技能】**：[cinematic-storyboard-director](../cinematic-storyboard-director/SKILL.md)（V3.2 双模式终版：全局视觉风格锁、满画幅无边框、Seedance 2.5 防崩坏四铁律、`4.0~4.2字/秒` 恒定字速、单镜禁 BGM + 分秒 Foley SFX）
+- **【必用钩子矩阵与质检卡】**：[hook_matrix_and_eval_rubric.md](./references/hook_matrix_and_eval_rubric.md)（10 类钩子分类学、证据帧拆解字段、跨切角赛马矩阵、Gate 1 前置 3 视角 × 8 维度自检评分卡）
 - **【必遵交付排版规范】**：[delivery_markdown_standard.md](./references/delivery_markdown_standard.md)（双模式剧本头 + 镜号四字标题 + 画布标注大小标题 + 防空 URL 分级点跑操作卡）
 - **【双模式路由与防幻觉手册】**：[reymon_cat_litter_playbook.md](./references/reymon_cat_litter_playbook.md)
 - **【画布分区拓扑规范】**：[canvas_blueprint_schema.md](./references/canvas_blueprint_schema.md)
@@ -41,12 +42,13 @@ description: >-
 2. **获取并读取参考视频**：
    - 本地视频文件：直接调用 `read_file` 原生读取画面切镜、景别运镜、口播字速与音效卡点；
    - 视频 URL：运行 [fetch_reference_video.py](./scripts/fetch_reference_video.py) 下载至 `input/` 后读取；若遇平台登录墙限制，提示用户将无水印 MP4 放入 `input/`。
-3. 输出 `01_reference_breakdown.md`：包含**逐秒切镜拆解表**与**爆款转化骨架提炼**（前 3 秒留人机制、情绪反转点、产品切入秒数、实证逻辑与逼单 CTA）。
+3. 输出 `01_reference_breakdown.md`：包含**逐秒切镜拆解表**与**爆款转化骨架提炼**（对照 [hook_matrix_and_eval_rubric.md](./references/hook_matrix_and_eval_rubric.md) 明确**钩子类型定性 H01–H10**、并必填 **`证据帧时间戳`**、**`镜头物理动势与切镜节拍`** 与 **`静音前 2 秒可读性`**，提取前 3 秒留人机制、情绪反转点、产品切入秒数与逼单 CTA）。
 
 ---
 
 ### 阶段 2：按所选模式编写定制剧本与《素材/实拍对接清单》
 读取目标 SKU 的 `product_brief.md` 并扫描其 `assets/` 目录，编写 `02_script_and_asset_checklist.md`：
+- **多钩子赛马硬约束**：若选赛马测试，强制依据 [hook_matrix_and_eval_rubric.md](./references/hook_matrix_and_eval_rubric.md) 跨**心理切角 × 钩子类型**设计 `Hook A / B / C`（严禁只改词序同质化），并为每条变体标注**假设驱动测试指标**（测 3s 留存 / CTR / CVR）；
 - **若为【模式 A：全 AI 统合全片模式】**：
   - 编写完整逐镜视觉脚本（含多钩子变体，如选赛马策略），严格执行 **`4.0~4.2 汉字/秒` 字速卡尺**（杜绝同为 5s 视频因字数悬殊导致倍速或拖腔）；
   - 严格执行产品/内料镜 **1 镜 1 节点拆解**（倒砂/结团铲底等状态跳变镜配置**首尾帧双静帧锁**）；
@@ -57,15 +59,16 @@ description: >-
 
 ---
 
-### 阶段 3：人机对话审改定稿（停顿门禁 Gate 1）
-向用户展示 `01_reference_breakdown.md` 结论与 `02_script_and_asset_checklist.md`，**主动暂停并确认**：
-1. 钩子冲突感、台词字数与节奏、卖点侧重是否满意？
-2. 所需的新 SKU 包装图/内料真图是否已就位？确认无误后再进入画布搭建。
+### 阶段 3：前置质检与人机对话审改定稿（停顿门禁 Gate 1）
+1. **Gate 1 前置自检**：交付用户审稿前，先按 [hook_matrix_and_eval_rubric.md](./references/hook_matrix_and_eval_rubric.md) 执行 **「3 专家视角 × 8 维度自检评分卡」**（重点核验**静音前 2 秒可读性**与 **`4.0~4.2字/秒` 字速合规**）；任一维度 `< 7` 分（或字速不达标）先自动修补一轮，再将简版评分与修订亮点附于 `02_script_and_asset_checklist.md` 末尾。
+2. 向用户展示 `01_reference_breakdown.md` 结论与 `02_script_and_asset_checklist.md`，**主动暂停并确认**：
+   - 钩子冲突感、台词字数与节奏、卖点侧重与评分卡结论是否满意？
+   - 所需的新 SKU 包装图/内料真图是否已就位？确认无误后再进入画布搭建。
 
 ---
 
 ### 阶段 4 & 5：输出提示词总表并推送至 LibTV `480p` 预连线画布（零自动扣费）
-1. 输出终版导演脚本与全量提示词文档 `04_director_visual_script_final.md`（遵循 [delivery_markdown_standard.md](./references/delivery_markdown_standard.md)）。
+1. 输出终版导演脚本与全量提示词文档 `04_director_visual_script_final.md`（遵循 [delivery_markdown_standard.md](./references/delivery_markdown_standard.md)）：必须先在文首固化全片唯一的 **【全局视觉风格锁】**（成片镜统一全局电影质感与色彩科学）与 **【上游棚拍底座质感子句】**（中性 5500K 棚拍防串色），并逐字嵌入对应所有静帧与视频 Prompt；**严禁在生图/生视频 Prompt 中直写 `18% / 12% / 安全区 / 避让区` 等 UI 排版词汇（统一转译为满画幅实景自然延展与主体偏左三分线构图）**。
 2. 优先通过 **LibTV MCP**（`doctor` → `create_project` / `target_project` → `search_models` / `get_model`）搭建云端无限画布（所有节点强制 `run=false`）：
    - **默认模型档位**：静帧绑定 `Lib Image 2.6 Pro`（`lib-image-2.6-s`）；**所有视频节点默认绑定 `Seedance 2.5 Flash`（`star-video2.5-flash`）+ `resolution="480p"` + `ratio="9:16"`**；TTS 绑定 `Minimax-speech-2.8-hd`（`speech-2.8-hd`，同一角色锁死同一 `voiceId` 与 `voice_setting_speed`）；模式 A 全局配乐绑定 `ElevenMusic V3`（`vocal-music`，`instrumental=1`，`duration=30000`）。
    - **提示词引用语法**：MCP 节点提示词统一使用精确的 **`{{Node <nodeId>}}`** 引用上游节点（由服务端自动映射序号，严禁人工手算 Mixed 序号）。

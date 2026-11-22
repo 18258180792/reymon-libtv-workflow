@@ -1,4 +1,4 @@
-# 信息流爆款反推与 LibTV 无限画布 `480p` 预连线工作台（V3.0 多SKU · 双模式版）
+# 信息流爆款反推与 LibTV 无限画布 `480p` 预连线工作台（V3.2 多SKU · 双模式 · 全局风格锁版）
 
 本工程面向信息流投流团队（内置**瑞梦迪猫砂**标杆资产与 3 套专业 Agent 技能包，支持**任意产品与多 SKU 动态输入**），实现从 **「爆款视频反推 → 双模式分镜与资产规划 → 导演级音画提示词 → LibTV 云端画布 `480p Flash` 预连线（零自动扣费）」** 的标准化投流生产流。
 
@@ -33,9 +33,9 @@ cd reymon-libtv-workflow
 ## 2. 内置技能包与标杆物料清单
 
 - **三大专业技能（`.agents/skills/`）**：
-  - [reymon-ad-reverse-workflow](./.agents/skills/reymon-ad-reverse-workflow/SKILL.md)：V3.0 双模式反推编排、蓝图校验与 LibTV 画布预连线
-  - [commercial-image-prompt-pro](./.agents/skills/commercial-image-prompt-pro/SKILL.md)：八维光学摄影、四点布光、PBR 微观材质与 `9:16` 全向安全区提示词专家
-  - [cinematic-storyboard-director](./.agents/skills/cinematic-storyboard-director/SKILL.md)：分镜调度、`4.0~4.2 字/秒` 恒定语速锁、单镜禁 BGM 与模式 B 钩子切出衔接点
+  - [reymon-ad-reverse-workflow](./.agents/skills/reymon-ad-reverse-workflow/SKILL.md)：V3.2 双模式反推编排、H01–H10 钩子赛马矩阵、Gate 1 八维评分卡与 LibTV 画布预连线
+  - [commercial-image-prompt-pro](./.agents/skills/commercial-image-prompt-pro/SKILL.md)：V3.2 全局视觉风格锁、满画幅无边框摄影安全构图、四模态分流与八维 PBR 商业光学专家
+  - [cinematic-storyboard-director](./.agents/skills/cinematic-storyboard-director/SKILL.md)：V3.2 全局风格锁、Seedance 2.5 防崩坏四铁律、`4.0~4.2 字/秒` 恒定字速与单镜禁 BGM 调度
 - **内置标杆产品资产（`products/`）**：
   - [products/reymon-cat-litter/product_brief.md](./products/reymon-cat-litter/product_brief.md)（瑞梦迪 5合1 白茶款 2.5kg 档案，已随仓携带 4 张实拍包装与纯颗粒微距 PNG 底图）
   - 新增其他猫砂或新品类 SKU：参考 [products/README.md](./products/README.md) 与模板 [product_brief_template.md](./products/_sku_template/product_brief_template.md)，或在对话时直接把新 SKU 信息发给 AI 自动创建。
@@ -51,7 +51,7 @@ cd reymon-libtv-workflow
 2. **制作模式（二选一）**：
    - **模式 A：【全 AI 统合全片模式】**
      - 适用场景：整条片子从头到尾纯 AI 出片。
-     - 核心保障：**画面（Base Style + 三视图 + 实拍包装/内料真图锁）+ 音色与语速（同一 `Minimax` `voiceId` + 固定 `speed` + `4.0~4.2字/秒` 字速卡尺）+ 全局 BGM（单镜强制禁配乐 No BGM + 左侧独立生成 1 条 `ElevenMusic V3` 全局纯器乐 BGM）100% 统一**。
+     - 核心保障：**全局视觉风格锁（Global Visual Style Lock）+ 满画幅无边框摄影防黑边 + 三视图 + 实拍包装/内料真图锁**与**音色语速（同一 `Minimax` `voiceId` + 固定 `speed` + `4.0~4.2字/秒` 字速卡尺）+ 全局 BGM（单镜强制禁配乐 No BGM + 左侧独立生成 1 条 `ElevenMusic V3` 全局纯器乐 BGM）100% 统一**。
    - **模式 B：【轻量 AI 钩子 + 实拍混剪模式】**
      - 适用场景：前 3~6 秒用 AI 低成本做高吸睛戏剧/痛点钩子，中后段直接剪入你手机实拍的产品/内料硬核测试镜头。
      - 核心保障：画布**极简轻量，只搭建前 1~2 镜钩子节点**（绝不冗余搭建后段内料节点），并提供精准的**实拍切入点（Match Cut）建议**及可选的**同音色同语速后段实拍旁白 TTS 音频节点**，确保 AI 钩子切入实拍画面时声音不断层。
@@ -91,9 +91,21 @@ AI 会按以下节奏与你配合：
    - **优先点击运行 `05_音色与全局BGM组` 里的 `Minimax` 音频节点（及模式 A 的全局 BGM 节点）**，确保生成出真实 `.mp3` 音频；
    - 点击运行 `03_环境道具` 与 `04_角色三视图` 静帧节点。
 2. **第 2 步（跑分镜首尾静帧）**：
-   - 点击生成右侧每行的分镜首帧（及尾帧）合成图，核对包装文字锐利无乱码、内料形态无变形、右侧 12% 与上下 18% 安全区无遮挡。
+   - 点击生成右侧每行的分镜首帧（及尾帧）合成图，核对满画幅无黑边/白边/灰边、全局画风色温统一、包装文字锐利无乱码、内料形态无变形，以及主体居中偏左三分线便于后期花字与右侧互动栏叠加。
 3. **第 3 步（`480p Flash` 低成本抽卡）**：
    - 静帧与左侧音色均就绪后，点击最右侧 `Seedance 2.5 Flash (480p)` 视频节点低成本抽卡（若之前重跑过上游素材导致节点提示过期，先确认引用已刷新再点运行）。
 4. **第 4 步（成片统合）**：
    - **模式 A**：挑出每镜满意的卡片（可按需升级高清），在时间线或剪映中拼接各镜（单镜已禁自带 BGM），底部统一铺上左侧生成的**全局唯一 BGM 音轨（压底 `-15dB`）**与独立旁白干声；
    - **模式 B**：导出抽中的前 3~6 秒钩子视频（及同音色后段旁白音频），直接与你的手机实拍产品/内料镜头无缝混剪出片！
+
+---
+
+## 7. 版本更新记录（Changelog）
+
+- **`v3.2.0`**
+  - **全局视觉风格锁（Global Visual Style Lock）**：所有场景空镜、分镜首尾静帧与视频节点统一前置固定全片视觉体系、色彩科学与胶片光学肌理；上游角色三视图与棚拍道具底座采用中性 `5200K~5500K` 统一写实棚拍底座，防止跨镜色阶跳变与黄光串色。
+  - **满画幅防边框摄影安全构图（Full-Bleed Anti-Letterbox Framing）**：明确严禁在生图/生视频 Prompt 中直写 `18%`、`12%`、`安全区`、`避让区`、`安全边距` 等 UI 排版词，统一转译为全满画幅实景纵深延展与主体居中偏左三分线构图，根治上下黑边/灰边与白框问题。
+  - **V3.1 钩子分类学与 Gate 1 质检体系**：新增 `H01–H10` 前 3 秒钩子分类矩阵、跨切角赛马差异化规范、参考片证据帧字段，以及 Gate 1「3 专家视角 × 8 维度自检评分卡」（同步纳入 `scripts/setup.py --check` 校验）。
+  - **Seedance 2.5 防崩坏与四模态生图路由**：强化五大冲突保护优先级、多人三级动作权限分配、抽象情绪转单一物理锚点对照表，以及 `T2I / Turnaround / Multi-Ref / Product-Hero` 生图四模态分流与精准量化计数。
+- **`v3.0.0`**
+  - 初始跨 Agent 仓库上线：支持多产品/多 SKU 动态建档、模式 A/B 双轨制作、`4.0~4.2 字/秒` 恒定语速锁、单镜禁 BGM + 全局唯一纯器乐 BGM，以及 LibTV 无限画布 `480p Flash` 预连线（严格 `run=false` 零自动扣费）。
