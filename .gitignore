@@ -1,0 +1,23 @@
+# Secrets & local environment
+.env
+.env.local
+.env.*.local
+
+# Historical run batches & large reference videos (keep demo_reymon_sample template only)
+runs/*
+!runs/demo_reymon_sample/
+!runs/demo_reymon_sample/**
+
+# Locally generated skill mirrors (single source of truth is .agents/skills/)
+.claude/skills/
+.cursor/skills/
+
+# OS / Editor / Python artifacts
+.DS_Store
+Thumbs.db
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.log
+*.tmp
